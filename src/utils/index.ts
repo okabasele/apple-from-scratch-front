@@ -7,3 +7,10 @@ const isDark = await fac
 .then((color) => color.isDark);
 return isDark;
 }
+
+export const formatPrice = (price: number) => {
+  if (!price) {
+    return "0,00 €";
+  }
+  return price.toFixed(2).replace(".", ",") + " €";
+}

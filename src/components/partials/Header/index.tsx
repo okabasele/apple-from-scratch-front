@@ -5,7 +5,6 @@ import { useContext, useEffect } from "react";
 import { IoBagOutline, IoSearchOutline, IoLogoApple } from "react-icons/io5";
 import { TbArrowNarrowRight } from "react-icons/tb";
 
-
 const Header = () => {
   const { products } = useContext(CartContext);
 

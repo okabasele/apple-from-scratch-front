@@ -4,4 +4,9 @@ export interface Item {
   type: string
   url: string
   image:string
+  price: number
+}
+
+export interface CartItem extends Item {
+  quantity: number
 }

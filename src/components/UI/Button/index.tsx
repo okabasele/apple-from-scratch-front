@@ -3,7 +3,7 @@ import React from 'react'
 type ButtonProps = {
   title: string;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'primary-outline' | 'secondary' | 'default';
+  variant?: 'primary' | 'primary-outline' | 'secondary' | 'default' | 'link';
 } & React.HTMLProps<HTMLButtonElement>
 
 const Button = ({title, type, variant='default',  ...restProps}:ButtonProps) => {
@@ -26,6 +26,12 @@ const Button = ({title, type, variant='default',  ...restProps}:ButtonProps) => 
         px-4 py-2 rounded-3xl text-center
         ' {...restProps}>{title}</button>
       )
+      case 'link':
+        return (
+          <button type='button' className='text-sky-600 hover:text-sky-800
+          px-4 py-2 text-center
+          ' {...restProps}>{title}</button>
+        )
     default:
       return (
         <button type={type} className='bg-primary text-white hover:bg-primary-dark
