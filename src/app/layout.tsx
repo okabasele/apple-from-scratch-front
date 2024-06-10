@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/partials/Header";
-
+import CartContextProvider from "@/context/CartContext";
+import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from "@/components/partials/Footer";
 
 const ibm = IBM_Plex_Sans({weight:['100', '200', '300', '400', '500', '600', '700'],subsets: ["latin"] });
 
@@ -23,8 +26,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ibm.className}>
-        <Header />
-        {children}
+        <CartContextProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
+          <Header />
+          {children}
+          <Footer />
+        </CartContextProvider>
       </body>
     </html>
   );

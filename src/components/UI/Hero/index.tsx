@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 import ButtonLink from '../ButtonLink'
 import Image from 'next/image'
-import { ButtonVariant } from '@/enums'
 import Title from '../Title'
 import Link from 'next/link'
 
@@ -38,7 +37,7 @@ const Hero = ({title, subtitle, image, url}: HeroProps) => {
       <div className='h-full flex flex-col justify-center items-center text-center gap-3'>
         <Title title={title} level='1'/>
         <Title title={subtitle} level='2'/>
-        <ButtonLink title='En savoir plus' variant={ButtonVariant.PRIMARY}  href={url} />
+        <ButtonLink title='En savoir plus' variant="primary"  href={url} />
       </div>
     </section>
   )
