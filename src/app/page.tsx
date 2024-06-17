@@ -15,7 +15,7 @@ export default  function Home() {
     const fetchData = async () => {
       setLoading(true);
       const data = await fetchGraphQl(GET_PRODUCTS);
-      setProducts(data.getProducts as Item[]);
+      setProducts(data.getProducts);
       setLoading(false);
     };
 
