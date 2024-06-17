@@ -1,7 +1,7 @@
 # Apple from scratch
 
 ## Production url : 
-[Apple from scratch](https://apple-from-scratch-front-jzlo92eqw-okabaseles-projects.vercel.app)
+[Apple from scratch](https://apple-from-scratch-front.vercel.app/)
 
 ## Features
 - page d'accueil
