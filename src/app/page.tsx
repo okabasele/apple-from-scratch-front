@@ -22,7 +22,7 @@ export default  function Home() {
     fetchData();
   }, []);
 
-  if (loading) {
+  if (!products || loading) {
     return <div>Chargement...</div>;
   }
 
