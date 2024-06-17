@@ -1,4 +1,5 @@
 # Apple from scratch
+Océane Kabasele
 
 ## Production url : 
 [Apple from scratch](https://apple-from-scratch-front.vercel.app/)
@@ -12,6 +13,7 @@
 ## backend repo
 
 [github: API apple from scratch](https://github.com/okabasele/apple-from-scratch-api)
+[Production: API apple from scratch](https://apple-from-scratch-api.onrender.com)
 
 
 ## Paiement Stripe
