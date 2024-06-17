@@ -8,6 +8,7 @@ import { it } from "node:test";
 
 export default async function Home() {
   const products  = await fetchGraphQl(GET_PRODUCTS).then(data => data.getProducts as Item[])
+  console.log({products})
   if (!products) return <div>loading...</div>
   
   const hero = {
