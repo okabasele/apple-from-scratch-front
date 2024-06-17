@@ -1,8 +1,15 @@
 import Banner from "@/components/UI/Banner";
 import GridPost from "@/components/UI/GridPost";
 import Hero from "@/components/UI/Hero";
+import { GET_PRODUCTS } from "@/graphql/queries";
+import { Item } from "@/interfaces";
+import { fetchGraphQl } from "@/services/fetchGraphql.api";
+import { it } from "node:test";
 
-export default function Home() {
+export default async function Home() {
+  const products  = await fetchGraphQl(GET_PRODUCTS).then(data => data.getProducts as Item[])
+  if (!products) return <div>loading...</div>
+  
   const hero = {
     title: "Evénement Apple",
     subtitle: "Regardez l'événement en ligne le 07/05 à 16h.",
@@ -15,25 +22,14 @@ export default function Home() {
       subtitle: "Titane. Si robuste. Si léger. Si Pro.",
       image: "/images/banners/iphone_15_pro.jpg",
       color:"white",
-      item: {
-        id: 1,
-        name: "iPhone 15 Pro",
-        url: "#",
-        image: "/images/products/iphone_15_pro.jpg",
-        type: "iPhone"
-      },
+      item: products.find(product=> product.name == "iPhone 15 Pro")
     },
     {
       title: "iPhone 15",
       subtitle: "Nouvel appareil photo. Nouvelles couleurs. Réemerveillement.",
       image: "/images/banners/iphone_15.jpg",
-      item: {
-        id: 2,
-        name: "iPhone 15",
-        url: "#",
-        image: "/images/products/iphone_15.jpg",
-        type: "iPhone"
-      },
+      color:"black",
+      item: products.find(product=> product.name == "iPhone 15")
   
     }
   ]
@@ -45,6 +41,7 @@ export default function Home() {
     subtitle: "Poids plume. Puissance M3.",
     image: "/images/promo/macbook_air_m3.jpg",
     url: "#",
+    item: products.find(product=> product.name == "Macbook Air M3")
   },
   {
     
@@ -54,6 +51,7 @@ export default function Home() {
     className:"text-red-500",
     image: "/images/promo/apple_watch_series_9.jpg",
     url: "#",
+    item: products.find(product=> product.name == "Apple Watch")
  },
  {
   
@@ -61,6 +59,7 @@ export default function Home() {
   subtitle:"Vos idées. Sa magie. Du génie.",
   image: "/images/promo/ipads.jpg",
   url: "#",
+  item: products.find(product=> product.name == "iPad")
   },
   {
     
@@ -70,9 +69,11 @@ export default function Home() {
     className:"text-red-500",
     image: "/images/promo/airpods_pro.jpg",
     url: "#",
+    item: products.find(product=> product.name == "AirPods Pro")
  }
 
   ]
+
 
   return (
     <main className="flex flex-col gap-5">

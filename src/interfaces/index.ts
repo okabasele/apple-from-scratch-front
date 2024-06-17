@@ -10,3 +10,15 @@ export interface Item {
 export interface CartItem extends Item {
   quantity: number
 }
+
+export interface StripeSession {
+  id: string;
+  url: string;
+}
+
+export interface Order {
+  id: string;
+  total: number;
+  date: string;
+  items: CartItem[];
+}

@@ -1,34 +1,62 @@
 "use client"
 import Button from '@/components/UI/Button'
+import ButtonLink from '@/components/UI/ButtonLink'
 import Title from '@/components/UI/Title'
 import { CartContext } from '@/context/CartContext'
+import { CartItem } from '@/interfaces'
+import { fetchStripeSession } from '@/services/fetchStripeSession.api'
 import { formatPrice } from '@/utils'
 import Image from 'next/image'
-import React, { useContext } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useContext, useEffect } from 'react'
 import { PiPackageThin } from "react-icons/pi";
 
 const Cart = () => {
-  const {products, removeFromCart, updateQuantity} =useContext(CartContext)
-  const total = 449.00
-  return (
-    <section className='flex flex-col items-center h-screen'>
-      <div className='mt-10 pb-10 border-b border-gray-400'>
+  const router = useRouter()
+
+  const {products, total, removeFromCart, updateQuantity} = useContext(CartContext)
+  
+  useEffect(() => {
+    //resize the section with header height
+    const header = document.querySelector('header')
+    const section = document.querySelector('#cart-section') as HTMLDivElement;
+    if (header && section) {
+      const headerHeight = header.clientHeight
+      section.style.minHeight = window.innerHeight - headerHeight + 'px'
+    }
+  },[])
+
+  if (!products) return <Title title="Votre panier est vide" level="1" font="bold" /> 
+  
+  const handleCheckout = async (items: CartItem[]) => {
+    const stripeSession = await fetchStripeSession(items);
+    console.log({stripeSession})
+    if (stripeSession) {
+      router.push(stripeSession.url)
+    }
+  }
+
+    
+    return (
+      <section id='cart-section' className='flex flex-col items-center'>
+      <div className='my-10'>
       <Title title={`Le montant total de votre panier est de ${formatPrice(total)}.`} level="1" font="bold" /> 
-      <Button title='Valider la commande' variant="primary" />
+      <br/>
+      <ButtonLink title="Voir les commandes" variant="primary-outline" href='/order' />
       </div>
       <div className='w-[823px] pb-10 border-b border-gray-400'>
         {products.map((product) => (
-          <div key={product.id} className='h-60 flex '>
+          <div key={product.id} className='h-60 flex pt-10 border-t border-gray-400'>
             <div className='w-64 h-full'>
-              <Image src={`/images/products/apple-watch.jpg`} alt={product.name} width={400} height={400} />
+              <Image src={product.image} alt={product.name} width={400} height={400} />
             </div>
             <div className='w-full' >
               <div className='flex justify-between h-28 py-2 border-b border-gray-400'>
                 <Title title={product.name} level='2' font='bold' />
                 <div className='flex items-start '>
-                  <Button title='+' variant='link' onClick={()=>updateQuantity(product, product.quantity+1)} />
-                  <Title title={product.quantity.toString()} level='2' font='bold' />
                   <Button title='-' variant='link' onClick={()=>updateQuantity(product, product.quantity-1)} />
+                  <Title title={product.quantity.toString()} level='2' font='bold' />
+                  <Button title='+' variant='link' onClick={()=>updateQuantity(product, product.quantity+1)} />
                 </div>
                 <div>
                   <Title title={formatPrice(product.price)} level='2' font='bold' />
@@ -56,8 +84,9 @@ const Cart = () => {
           <Title title='Total' level='2' font='bold' />
           <Title title={formatPrice(total)} level='2' font='bold' />
         </div>
-        <Button title='Valider la commande' variant='primary' />
+        
         </div>
+        <Button title='Valider la commande' variant='primary' onClick={()=>handleCheckout(products)} />
       </div>
     </section>
   )

@@ -6,19 +6,20 @@ import ButtonLink from '../ButtonLink'
 import Button from '../Button'
 import { isImageDark } from '@/utils'
 import { CartContext } from '@/context/CartContext'
+import { Item } from '@/interfaces'
 
 type PostCardProps = {
   title: string
   subtitle: string
   image: string
   url: string
+  item: Item
   text?: string
   className?: string
 }
 
-const PostCard =  ({title, subtitle, image, text, className}: PostCardProps) => {
+const PostCard =  ({title, subtitle, image, text, item, className}: PostCardProps) => {
   const { addToCart } = useContext(CartContext);
-  const item = {}
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {

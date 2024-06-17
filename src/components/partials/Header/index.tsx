@@ -6,7 +6,7 @@ import { IoBagOutline, IoSearchOutline, IoLogoApple } from "react-icons/io5";
 import { TbArrowNarrowRight } from "react-icons/tb";
 
 const Header = () => {
-  const { products } = useContext(CartContext);
+  const { products, total } = useContext(CartContext);
 
   const scrollEvent = () => {
     const header = document.querySelector('header') as HTMLElement;
@@ -75,12 +75,15 @@ const Header = () => {
                    <div className=" group-hover:block hidden
                     absolute w-80 h-20 -bottom-20 right-0 bg-white overflow-x-hidden">
                       {products.length > 0 ?
-                      products.map((product) => (
+                      <>
+                     { products.map((product) => (
                         <div key={product.id} className="flex mb-1"> 
                           <TbArrowNarrowRight />
                           <p className="text-sm ml-1"> {product.name}</p>
                         </div>
-                      )) : <p className="text-sm">No items in wishlist</p>
+                      ))} <p>Total: {total}€ </p>
+                      </>
+                      : <p className="text-sm">No items in wishlist</p>
                       }
                   </div>
               </Link>
