@@ -1,15 +1,24 @@
+"use client"
 import Banner from "@/components/UI/Banner";
 import GridPost from "@/components/UI/GridPost";
 import Hero from "@/components/UI/Hero";
 import { GET_PRODUCTS } from "@/graphql/queries";
 import { Item } from "@/interfaces";
 import { fetchGraphQl } from "@/services/fetchGraphql.api";
-import { it } from "node:test";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  const products  = await fetchGraphQl(GET_PRODUCTS).then(data => data.getProducts as Item[])
-  console.log({products})
-  if (!products) return <div>loading...</div>
+export default  function Home() {
+  const [products, setProducts] = useState<Item[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchGraphQl(GET_PRODUCTS);
+      setProducts(data.getProducts as Item[]);
+    };
+
+    fetchData();
+  }, []);
+
   
   const hero = {
     title: "Evénement Apple",
