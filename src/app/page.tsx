@@ -9,18 +9,21 @@ import { useEffect, useState } from "react";
 
 export default  function Home() {
   const [products, setProducts] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const data = await fetchGraphQl(GET_PRODUCTS);
       setProducts(data.getProducts as Item[]);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
 
-  if (products.length === 0) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <div>Chargement...</div>;
   }
 
   
