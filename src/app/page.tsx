@@ -19,6 +19,10 @@ export default  function Home() {
     fetchData();
   }, []);
 
+  if (products.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   
   const hero = {
     title: "Evénement Apple",
