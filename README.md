@@ -1,5 +1,8 @@
 # Apple from scratch
 
+## Production url : 
+[Apple from scratch](https://apple-from-scratch-front-jzlo92eqw-okabaseles-projects.vercel.app)
+
 ## Features
 - page d'accueil
 - panier
@@ -8,7 +11,7 @@
 
 ## backend repo
 
-https://github.com/okabasele/apple-from-scratch-api
+[github: API apple from scratch](https://github.com/okabasele/apple-from-scratch-api)
 
 
 ## Paiement Stripe

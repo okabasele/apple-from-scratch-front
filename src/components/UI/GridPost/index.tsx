@@ -1,8 +1,17 @@
 import React from 'react'
 import PostCard from '../PostCard'
+import { Item } from '@/interfaces'
 
 type GridProps = {
-  items: any[]
+  items: {
+    title: string
+    subtitle: string
+    image: string
+    url: string
+    text?: string
+    item: Item
+    className?: string
+  }[]
 }
 
 const GridPost = ({items}: GridProps) => {
