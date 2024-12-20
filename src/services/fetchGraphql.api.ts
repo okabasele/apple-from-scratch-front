@@ -31,6 +31,6 @@ export const fetchGraphQl = async (resolvers: string, variables?:object, token?:
         return data.data;
         
     } catch (error) {
-        return error;
+        throw error;
     }
 }

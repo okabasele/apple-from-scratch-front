@@ -5,7 +5,7 @@ import Title from '@/components/UI/Title'
 import { CartContext } from '@/context/CartContext'
 import { CartItem } from '@/interfaces'
 import { fetchStripeSession } from '@/services/fetchStripeSession.api'
-import { formatPrice } from '@/utils'
+import { formatPrice, generateBlurPlaceholder } from '@/utils'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect } from 'react'
@@ -48,7 +48,7 @@ const Cart = () => {
         {products.map((product) => (
           <div key={product.id} className='h-60 flex pt-10 border-t border-gray-400'>
             <div className='w-64 h-full'>
-              <Image src={product.image} alt={product.name} width={400} height={400} />
+              <Image placeholder='blur' blurDataURL={generateBlurPlaceholder("white")} src={product.image} alt={product.name} width={400} height={400} />
             </div>
             <div className='w-full' >
               <div className='flex justify-between h-28 py-2 border-b border-gray-400'>

@@ -2,30 +2,9 @@
 import Banner from "@/components/UI/Banner";
 import GridPost from "@/components/UI/GridPost";
 import Hero from "@/components/UI/Hero";
-import { GET_PRODUCTS } from "@/graphql/queries";
-import { Item } from "@/interfaces";
-import { fetchGraphQl } from "@/services/fetchGraphql.api";
-import { useEffect, useState } from "react";
+import products  from "@/data/products.json";
 
 export default  function Home() {
-  const [products, setProducts] = useState<Item[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const data = await fetchGraphQl(GET_PRODUCTS);
-      setProducts(data.getProducts);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  if (!products || loading) {
-    return <div>Chargement...</div>;
-  }
-
   
   const hero = {
     title: "Evénement Apple",
@@ -85,7 +64,6 @@ export default  function Home() {
       item: products.filter(product=> product.name === "AirPods Pro")[0]
     }
   ]
-
 
   return (
     <main className="flex flex-col gap-5">
