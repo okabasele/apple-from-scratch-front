@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "iPhone 15",
+        "type": "Phone",
+        "url": "#",
+        "image": "/images/products/iphone_15.jpg",
+        "price": 799
+    },
+    {
+        "id": 2,
+        "name": "iPhone 15 Pro",
+        "type": "Phone",
+        "url": "#",
+        "image": "/images/products/iphone_15_pro.jpg",
+        "price": 999
+    },
+    {
+        "id": 3,
+        "name": "MacBook Air",
+        "type": "Laptop",
+        "url": "#",
+        "image": "/images/products/macbook_air.jpg",
+        "price": 1199
+    },
+    {
+        "id": 4,
+        "name": "Apple Watch",
+        "type": "Watch",
+        "url": "#",
+        "image": "/images/products/apple_watch.jpg",
+        "price": 399
+    },
+    {
+        "id": 5,
+        "name": "iPad",
+        "type": "Tablet",
+        "url": "#",
+        "image": "/images/products/ipad.jpg",
+        "price": 599
+    },
+    {
+        "id": 6,
+        "name": "AirPods Pro",
+        "type": "Earbuds",
+        "url": "#",
+        "image": "/images/products/airpods_pro.jpg",
+        "price": 249
+    }
+]
